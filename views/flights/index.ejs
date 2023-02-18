@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+
+<div class="grid-header grid-4c">
+  <% schemaObjKeys.forEach((flightName) => { %>
+    <div>
+      <div class="sort-div">
+        <!--form goes here-->
+        <form action="/flights?sort=asc&type=<%= flightName %>" method="GET">
+          <a href="/flights?sort=asc&type=<%= flightName %>" type="submit
+          " class="sort-links"><img class="sort-arrows" src="https://cdn-icons-png.flaticon.com/512/130/130904.png" alt=""></a>
+        </form>
+        <form action="/flights/?sort=desc&type=<%= flightName %>" method="GET">
+          <a href="/flights?sort=desc&type=<%= flightName %>" class="sort-links"><img class="sort-arrows" src="https://cdn-icons-png.flaticon.com/512/130/130900.png" alt=""></a>
+        </form>
+      </div>
+      <h2 class="flight-title"><%- flightName === "flightNo" ? "flight no." : flightName %></h2>
+    </div>
+  <% }) %>
+</div>
+
+<div class="grid-4c all-flight-container">
+  <% flights.forEach(flight => { %>
+    <div>
+      <h3><%= flight.airline %></h3>
+    </div>
+    <div>
+      <h3><%= flight.airport %></h3>
+    </div>
+    <div>
+      <h3><%= flight.flightNo %></h3>
+    </div>
+    <div>
+      <h4 <%- presentTime > flight.departs ? 'class="date-has-passed"' : ''%> class="departure-text"><%= flight.departs %></h4>
+    </div>
+  <% }) %>
+</div>
+
+
+<%- include('../partials/footer') %>

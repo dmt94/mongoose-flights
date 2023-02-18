@@ -29,7 +29,7 @@ const flightSchema = new Schema({
     max: 9999
   },
   departs: {
-    type: Number,
+    type: Date,
     default: function() {
       const presentDate = new Date();
       const presentDateCopy = new Date(presentDate);
@@ -38,3 +38,5 @@ const flightSchema = new Schema({
     }
   }
 })
+
+module.exports = mongoose.model('Flight',flightSchema);

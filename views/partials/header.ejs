@@ -5,3 +5,11 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <nav>
+      
+      <a href='/' <%- title === 'Mongoose Flights' ? 'class="active"' : '' %>> HOMEPAGE </a>
+      <a href='/flights/new' <%- title === 'Add New Flight' ? 'class="active"' : '' %>> ADD FLIGHT </a>
+      <a href='/flights' <%- title === 'View All Flights' ? 'class="active"' : '' %>> VIEW ALL FLIGHTS</a>
+    </nav>
+    <main>
+      <h1 class="main-title"><%= title %></h1>
