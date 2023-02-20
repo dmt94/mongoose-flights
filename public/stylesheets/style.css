@@ -45,8 +45,25 @@ a:hover {
   box-shadow: rgba(155, 155, 155, 0.16) 0px 1px 4px;
 }
 
+.remove-dest-link {
+  padding: 1vmin;
+  font-weight: 800;
+  background-color: #ff615f6d;
+  color: black;
+  border: none;
+  border-radius: 40px;
+  align-self: flex-end;
+  margin-top: 2vmin;
+}
+
+.remove-dest-link:hover {
+  cursor: pointer;
+  color: rgb(33, 32, 32);
+  background-color: #ff625fdf;
+}
+
 .date-has-passed {
-  color: rgb(202, 29, 29);
+  color: rgb(188, 24, 24);
 }
 
 .active {
@@ -59,6 +76,30 @@ a:hover {
 .grid-4c {
   display: grid;
   grid-template-columns: repeat(4, 30vmin);
+}
+
+.grid-5c {
+  display: grid;
+  grid-template-columns: repeat(4, 30vmin) 11vmin;
+}
+
+.grid-5c .details-div {
+  background-color: #105bff00;
+  border: none;
+  display: flex;
+}
+.grid-5c .details-div a {
+  background: rgb(208, 230, 255);
+  border: none;
+  color: rgb(43, 40, 236);
+  border-radius: 0 22px 22px 0;
+  align-self: self-start;
+  padding-left: 1vmin;
+  font-weight: 900;
+}
+.grid-5c .details-div a:hover {
+  background-color: #0062ff;
+  color: white;
 }
 
 .grid-header > div {
@@ -122,7 +163,11 @@ a:hover {
 .sort-arrows {
   width: 2vmin;
 }
-
+.destination-sort form {
+  max-width: fit-content;
+  display: flex;
+  padding: 1vmin;
+}
 /* CREATE FORM */
 .img-icon {
   width: 12vmin;
@@ -132,7 +177,8 @@ a:hover {
   color: white;
   justify-content: flex-start;
 }
-.wrapper {
+.wrapper,
+.main-container-show {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -170,4 +216,94 @@ a:hover {
 .wrapper label {
   font-size: 4vmin;
   margin: 1vmin;
+}
+
+/* Flight Details */
+.main-container-show {
+  max-width: fit-content;
+}
+.main-container-show div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #1d1c1c;
+  color: white;
+}
+.main-container-show h4,
+.img-arrow {
+  margin-left: 3vmin;
+  font-size: 2vmin;
+}
+
+.img-arrow {
+  width: 3vmin;
+}
+
+.main-container-show
+.destination-div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1vmin 0;
+}
+
+.main-container-show
+.destination-div
+form select,
+.main-container-show
+.destination-div
+form input {
+  padding: 1vmin;
+  border-radius: 10px;
+  border: none;
+  margin: 1vmin;
+  font-size: 2vmin;
+  font-family: 'Comfortaa', cursive;
+}
+
+.main-container-show
+.destination-div
+form input {
+  margin-top: 2vmin;
+}
+
+.main-container-show
+.destination-div
+form input:hover {
+  cursor: pointer;
+  background-color: #081c3a6d;
+  color: white;
+}
+
+.destination-div
+div {
+  border-bottom: none;
+}
+.destination-div
+div
+h2 {
+  margin-right: 2vmin;
+}
+.destination-div
+div
+h4 {
+  margin-left: 2vmin;
+}
+.destination-div .end-dest {
+  border-bottom: 1px solid black;
+}
+
+.destination-div form {
+  display: flex;
+  align-self: flex-end;
+}
+
+.dest-title, .dest {
+  color: rgb(255, 238, 110);
+}
+
+.dest-form {
+  display: flex;
+  align-items: baseline;
+  margin-top: 5vmin;
 }

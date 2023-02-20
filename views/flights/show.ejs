@@ -1,4 +1,85 @@
 <%- include('../partials/header') %>
 
+<div class="main-container-show">
+  <div>
+    <h2>Airline</h2>
+    <img class="img-arrow" src="https://cdn-icons-png.flaticon.com/512/724/724927.png" alt="">
+    <h4><%= flight.airline %></h4>
+  </div>
+
+  <div>
+    <h2>Airport</h2>
+    <img class="img-arrow" src="https://cdn-icons-png.flaticon.com/512/724/724927.png" alt="">
+    <h4><%= flight.airport %></h4>
+  </div>
+
+  <div>
+    <h2>Flight No.</h2>
+    <img class="img-arrow" src="https://cdn-icons-png.flaticon.com/512/724/724927.png" alt="">
+    <h4><%= flight.flightNo %></h4>
+  </div>
+
+  <div>
+    <h2>Departs</h2>
+    <img class="img-arrow" src="https://cdn-icons-png.flaticon.com/512/724/724927.png" alt="">
+    <h4><%= flight.departs %></h4>
+  </div>
+
+  <div class="destination-div">
+    <h2 class="dest-title">Destinations : </h2>
+    <div class="sort-div destination-sort">
+      <!--form goes here-->
+      <h4>Sort Arrival: </h4>
+      <form action="/flights/<%= flight._id %>?sort=asc&type=<%= flight.departs %>" method="GET">
+        <a href="/flights/<%= flight._id %>?sort=asc&type=<%= flight.departs %>" type="submit
+        " class="sort-links"><img class="sort-arrows" src="https://cdn-icons-png.flaticon.com/512/130/130904.png" alt=""></a>
+      </form>
+      <form action="/flights/<%= flight._id %>?sort=desc&type=<%= flight.departs %>" method="GET">
+        <a href="/flights/<%= flight._id %>?sort=desc&type=<%= flight.departs %>" class="sort-links"><img class="sort-arrows" src="https://cdn-icons-png.flaticon.com/512/130/130900.png" alt=""></a>
+      </form>
+    </div>
+
+
+    <% if (flight.destinations.length) { %>
+      <% flight.destinations.forEach(destFlight => { %>
+        <form
+          action="/flights/<%= flight._id %>?_method=DELETE&destId=<%= destFlight._id %>"
+          method="POST"
+          class="delete-form"
+        >
+        <button class="remove-dest-link" type="submit">DEL</button>
+        </form>
+        <div>
+          <h2>Airport</h1>
+          <h2 class="dest"> <%= destFlight.airport %> </h2>
+        </div>
+        <div class="end-dest">
+          <h2>Arrival</h1>
+          <h4 class="dest"> <%= destFlight.arrival %> </h2>
+        </div>
+      <% }) %>
+    <% } %>
+
+
+    <form class="dest-form" method="POST" action="/flights/<%= flight._id %>/destinations">
+
+      <label>Airport:</label>
+      <select name="airport">
+      <% availableDestinations.forEach((select) => { %> 
+          <option value=<%= select %>><%= select %></option>
+      <% }) %>
+      </select>
+
+      <label>Arrival:</label>
+      <input type="datetime-local" name="arrival" value="">
+
+      <input type="submit" value="Add Destination">
+
+    </form>
+  </div>
+
+</div>
+
+
 
 <%- include('../partials/footer') %>

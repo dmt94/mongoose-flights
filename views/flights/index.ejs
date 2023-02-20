@@ -18,7 +18,7 @@
   <% }) %>
 </div>
 
-<div class="grid-4c all-flight-container">
+<div class="grid-5c all-flight-container">
   <% flights.forEach(flight => { %>
     <div>
       <h3><%= flight.airline %></h3>
@@ -31,6 +31,9 @@
     </div>
     <div>
       <h4 <%- presentTime > flight.departs ? 'class="date-has-passed"' : ''%> class="departure-text"><%= flight.departs %></h4>
+    </div>
+    <div class="details-div">
+      <a href="/flights/<%= flight._id %>">DETAILS</a>
     </div>
   <% }) %>
 </div>
