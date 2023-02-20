@@ -7,6 +7,11 @@ body {
   font-family: 'Comfortaa', cursive;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .flight-title {
   text-transform: uppercase;
   font-weight: bolder;
@@ -18,7 +23,6 @@ body {
 }
 
 /* "Buttons */
-
 a {
   color: #0051ff;
   text-decoration: none;
@@ -73,11 +77,6 @@ a:hover {
 }
 /* VIEW ALL FLIGHT */
 
-.grid-4c {
-  display: grid;
-  grid-template-columns: repeat(4, 30vmin);
-}
-
 .grid-5c {
   display: grid;
   grid-template-columns: repeat(4, 30vmin) 11vmin;
@@ -87,6 +86,7 @@ a:hover {
   background-color: #105bff00;
   border: none;
   display: flex;
+  position: relative;
 }
 .grid-5c .details-div a {
   background: rgb(208, 230, 255);
@@ -175,7 +175,7 @@ a:hover {
 .create-form {
   display: flex;
   color: white;
-  justify-content: flex-start;
+  justify-content: center;
 }
 .wrapper,
 .main-container-show {

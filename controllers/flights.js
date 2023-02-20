@@ -9,13 +9,13 @@ module.exports = {
   show,
   delete: deleteDestination,
 }
-function getDefaultData(respond, presentTime=null, link) {
+function getDefaultData(respond, presentTime, link) {
   Flight.find({}, function(err, flights) {
-    renderAll(respond, flights, presentTime=null,link)
+    renderAll(respond, flights, presentTime, link)
   })
 }
 
-function renderAll(respond, flights, presentTime=null, link, dataType) {
+function renderAll(respond, flights, presentTime, link, dataType) {
   let schemaObj = Flight.schema.obj;
   let arrs = Object.entries(schemaObj).filter((objPair) => objPair[0] !== "destinations");
   schemaObj = Object.assign({}, Object.fromEntries(arrs));
@@ -28,10 +28,10 @@ function renderAll(respond, flights, presentTime=null, link, dataType) {
     schemaObjKeys,
   })
 }
-function sortDataBy(dataKey, res, req, presentTime=null, link) {
+function sortDataBy(dataKey, res, req, presentTime, link) {
   req.query.sort === "asc" ? getSortedData(req, res, presentTime, dataKey, link) : getSortedData(req, res, presentTime, `-${dataKey}`, link);
 }
-function getSortedData(req, res, presentTime=null, dataType, link) {
+function getSortedData(req, res, presentTime, dataType, link) {
   let flightsData = Flight.find({});
   let destSchema = Flight.schema.obj.destinations[0].obj;
   
@@ -61,7 +61,7 @@ function getSortedData(req, res, presentTime=null, dataType, link) {
     flightsData.sort(dataType)
     .exec(function(err, flights) {
       console.log("flights data", flightsData);
-      renderAll(res, flights, presentTime=null, link, dataType);
+      renderAll(res, flights, presentTime, link, dataType);
     })
   }
 }
