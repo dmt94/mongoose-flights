@@ -1,14 +1,14 @@
-const { render } = require('express/lib/response');
 const Flight = require('../models/flight');
-const mongoose = require('mongoose');
+const Ticket = require('../models/ticket');
 
 module.exports = {
   index,
   new: newFlight,
   create,
   show,
-  delete: deleteDestination,
+  delete: deleteFlight
 }
+
 function getDefaultData(respond, presentTime, link) {
   Flight.find({}, function(err, flights) {
     renderAll(respond, flights, presentTime, link)
@@ -17,8 +17,7 @@ function getDefaultData(respond, presentTime, link) {
 
 function renderAll(respond, flights, presentTime, link, dataType) {
   let schemaObj = Flight.schema.obj;
-  let arrs = Object.entries(schemaObj).filter((objPair) => objPair[0] !== "destinations");
-  schemaObj = Object.assign({}, Object.fromEntries(arrs));
+  schemaObj = Object.assign({}, Object.fromEntries(Object.entries(schemaObj).filter((objPair) => objPair[0] !== "destinations")));
   let schemaObjKeys = Object.keys(schemaObj);
   
   respond.render(link, {
@@ -71,6 +70,7 @@ function index(req, res) {
 
   if (req.query.type === 'departs') {
     sortDataBy('departs', res, req, presentTime, "flights/index");
+    
   } else if (req.query.type === 'flightNo') {
     sortDataBy('flightNo', res, req, presentTime, "flights/index");
   }  else if (req.query.type === 'airport') {
@@ -111,10 +111,13 @@ function create(req, res) {
 }
 
 function renderShowDefault(req, res, title, flight, availableDestinations) {
-  res.render('flights/show', {
-    title: title,
-    flight,
-    availableDestinations
+  Ticket.find({flight: flight._id}, function(err, tickets) {
+    res.render('flights/show', {
+      title: title,
+      flight,
+      availableDestinations,
+      tickets
+    })
   })
 }
 
@@ -122,7 +125,7 @@ function show(req, res) {
   let destSchema = Flight.schema.obj.destinations[0].obj;
   Flight.findById(req.params.id, function(err, flight) {
     let destinationAirports = flight.destinations.map((destination) => {
-      return destination.airport
+      return destination.airport;
     });
     
     let availableDestinations = destSchema.airport.enum.filter((airport) => !destinationAirports.includes(airport) && flight.airport !== airport);
@@ -137,12 +140,9 @@ function show(req, res) {
   })
 }
 
-function deleteDestination(req, res) {
-  let destinationId = req.query.destId;
-  Flight.findOne({_id: req.params.id}, function(err, flight) {
-    flight.destinations.remove(destinationId);
-    flight.save(function(err) {
-      res.redirect(`/flights/${req.params.id}`);
-    })
-  });
+function deleteFlight(req, res) {
+  Flight.findByIdAndRemove(req.params.id, function(err, flight) {
+    res.redirect(`/flights`);
+  })
 }
+

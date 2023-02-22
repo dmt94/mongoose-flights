@@ -66,6 +66,10 @@ a:hover {
   background-color: #ff625fdf;
 }
 
+.remove-flight-btn {
+  background-color: #86adff;
+}
+
 .date-has-passed {
   color: rgb(188, 24, 24);
 }
@@ -178,7 +182,8 @@ a:hover {
   justify-content: center;
 }
 .wrapper,
-.main-container-show {
+.main-container-show,
+#add-ticket-form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -190,7 +195,8 @@ a:hover {
 }
 
 .wrapper select,
-.wrapper input {
+.wrapper input,
+#add-ticket-form input {
   width: 50vmin;
   margin: 2vmin auto 2vmin 0;
   padding: 2vmin;
@@ -202,7 +208,9 @@ a:hover {
 }
 
 .wrapper select,
-.wrapper input {
+.wrapper input,
+#add-ticket-form,
+#add-ticket-form input {
   border: none;
 }
 
@@ -213,7 +221,8 @@ a:hover {
   border: 1px solid rgba(255, 255, 255, 0);
 }
 
-.wrapper label {
+.wrapper label,
+#add-ticket-form label {
   font-size: 4vmin;
   margin: 1vmin;
 }
@@ -240,11 +249,27 @@ a:hover {
 }
 
 .main-container-show
-.destination-div {
+.destination-div,
+.tickets-div {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 1vmin 0;
+}
+
+.ticket-div-container
+.ticket-div {
+  border-bottom: none;
+}
+
+.tickets-div
+.ticket-div-container {
+  margin-bottom: 2vmin;
+  border-bottom: 2px solid rgb(255, 241, 241);
+}
+
+.ticket-div h2 {
+  margin-right: 1vmin;
 }
 
 .main-container-show
@@ -306,4 +331,64 @@ h4 {
   display: flex;
   align-items: baseline;
   margin-top: 5vmin;
+}
+
+#del-form {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+}
+
+/* tickets */
+.tickets-div #new-ticket-btn,
+#add-ticket-form .add-ticket-btn {
+  background-color: #0051ff;
+  color: white;
+}
+#add-ticket-form .add-ticket-btn {
+  width: 100%;
+}
+
+.tickets-div #new-ticket-btn:hover,
+#add-ticket-form .add-ticket-btn:hover {
+  background-color: #fdffe6fd;
+  color: rgb(34, 34, 36);
+  cursor: pointer;
+}
+
+#add-ticket-form label {
+  color: #eef4ff;
+}
+
+#add-ticket-btn {
+  align-self: center;
+}
+
+.tickets-div {
+  width: 100%;
+}
+.ticket-wrapper, .ticket-div-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  padding: 4vmin;
+  width: 80%;
+  margin: 4px;
+}
+
+.ticket-wrapper {
+  width: 70%;
+  height: 10vmin;
+  background-color: #fefee4f5;
+  padding-bottom: 7vmin;
+}
+
+.ticket-div h2 {
+  color: black;
+  font-weight: 800;
+}
+
+.remove-ticket {
+  width: 4vmin;
+  background-color: #ff0000;
 }

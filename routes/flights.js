@@ -4,7 +4,7 @@ var flightsCtrl = require('../controllers/flights');
 
 // All these routes start with "/flights"
 
-//GET /flights (render index of flights route)
+// GET /flights (render index of flights route)
 router.get('/', flightsCtrl.index);
 // GET /flights/new
 router.get('/new', flightsCtrl.new);
@@ -14,7 +14,7 @@ router.get('/:id', flightsCtrl.show);
 // POST /flights (handle new flight posted)
 router.post('/', flightsCtrl.create); 
 
-// DELETE
+// DELETE 
 router.delete('/:id', flightsCtrl.delete);
 
 module.exports = router;
